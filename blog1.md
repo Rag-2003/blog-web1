@@ -8,61 +8,94 @@ description: "Our transformation journey from distributed system complexity to e
 :root {
   --primary: #667eea;
   --secondary: #764ba2;
-  --text: #333;
-  --light-bg: #f8f9fa;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --dark: #2c3e50;
+  --light: #f8f9fa;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.7;
-  color: var(--text);
+  color: #333;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  margin: 0;
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+.container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 0 2rem;
 }
 
-h1, h2, h3 {
-  color: #2c3e50;
-  margin-top: 2rem;
-  line-height: 1.3;
+.blog-post {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-h1 {
+.blog-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.blog-title {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
-  margin-bottom: 1.5rem;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.blog-subtitle {
+  font-size: 1.2rem;
+  color: var(--gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 15px;
+  margin: 2rem 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
-  font-size: 2rem;
-  margin: 3rem 0 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #eee;
+  font-size: 1.8rem;
+  color: var(--dark);
+  margin: 2.5rem 0 1.5rem 0;
+  font-weight: 700;
   position: relative;
+  padding-left: 20px;
 }
 
 h2::before {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -2px;
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: var(--gradient);
   border-radius: 2px;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #34495e;
-  margin: 2.5rem 0 1rem;
+  margin: 2rem 0 1rem 0;
+  font-weight: 600;
 }
 
 p {
@@ -86,28 +119,19 @@ li {
   border-left: 4px solid var(--primary);
   padding: 1.5rem;
   margin: 2rem 0;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .quote-box {
-  background: var(--light-bg);
+  background: var(--light);
   border-left: 4px solid #28a745;
   padding: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
-  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border-radius: 0 10px 10px 0;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  margin: 2rem 0;
-  display: block;
-}
-
-.code-mention {
+.code {
   background: #f1f3f4;
   padding: 2px 6px;
   border-radius: 4px;
@@ -116,29 +140,28 @@ img {
   color: #e91e63;
 }
 
-blockquote {
-  margin: 1.5rem 0;
-  padding: 1rem 1.5rem;
-  background: var(--light-bg);
-  border-left: 4px solid #ddd;
-  font-style: italic;
-}
-
-blockquote p {
-  margin: 0;
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  color: var(--gray);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-  body {
-    padding: 1rem;
+  .container {
+    padding: 0 1rem;
   }
   
-  h1 {
+  .blog-post {
+    padding: 1.5rem;
+  }
+  
+  .blog-title {
     font-size: 2rem;
   }
   
   h2 {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   
   h3 {
@@ -151,15 +174,11 @@ blockquote p {
 
 *Welcome to the beginning of our Temporal.io blog series, where we share our transformation journey from distributed system complexity to elegant workflow orchestration in the tolling industry.*
 
-![Temporal.io Journey Hero Image](./img/ChatGPT%20Image%20Sep%204,%202025,%2012_41_12%20PM.png)
-
 ## The Challenge: When Simple Becomes Complex
 
 Every engineering team has been there. What starts as a simple feature request quickly spirals into a web of interconnected services, each with their own failure modes, retry logic, and state management nightmares.
 
-Our journey began like many others—with ambitious goals and growing complexity. Our `AVITMM (Automatic Vehicle Identification Transaction Manager Module)` project started with a clear mission: process toll transactions efficiently within our Tolling Business Operations System (BOS). As our platform expanded to handle both Electronic Toll Transponder transactions and license plate-based violations, we found ourselves drowning in the very infrastructure we built to make things "simple."
-
-![Journey Process Diagram](./img/ChatGPT%20Image%20Sep%204,%202025,%2012_41_17%20PM.png)
+Our journey began like many others—with ambitious goals and growing complexity. Our `AVITMM (Automatic Vehicle Identification Transaction Manager Module)` project started with a clear mission: process toll transactions efficiently within our Tolling Business Operations System (BOS). As our platform expanded to handle both Electronic Toll Transponder transactions and license plate-based violations, we found ourselves drowning in the very infrastructure we built to make "simple."
 
 ## The Dark Days Before Temporal
 
